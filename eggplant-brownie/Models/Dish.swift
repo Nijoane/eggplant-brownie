@@ -10,17 +10,17 @@ import UIKit
 class Dish: NSObject {
     
     /* MARK: - Attributes */
-    var name: String
-    var happiness: String
-    var itens: Array<Item> = []
+    let name: String
+    let happiness: Int
+    let itens: Array<Item> = []
         
-        /* MARK: - Constructor (init) */
-    init(name: String, happiness: String) {
+    /* MARK: - Constructor (init) */
+    init(name: String, happiness: Int) {
         self.name = name
         self.happiness = happiness
     }
         
-        /* MARK: - Methods */
+    /* MARK: - Methods */
     func totalOfKcal() -> Double {
         var total: Double = 0
             
