@@ -8,14 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var nameTextField: UITextField?
     
-    @IBOutlet var happinesTextField: UITextField!
+    @IBOutlet var happinesTextField: UITextField?
 
     @IBAction func add(_ sender: Any) {
-        let name = nameTextField.text
-        let happiness = happinesTextField.text
+        if let nameOfDish = nameTextField?.text,
+           let happinessOfDish = happinesTextField?.text {
         
-        print("comi \(String(describing: name)) e  fiquei com felicidade: \(String(describing: happiness))")
+            let name = nameOfDish
+            if let happiness = Int(happinessOfDish) {
+                
+                let dish = Dish(name: name, happiness: happiness)
+                    
+                print("Eu comi \(dish.name) e fiquei com felicidade: \(dish.happiness)")
+            } else {
+                print("Error when trying to create a meal :(")
+            }
+        }
     }
 }
