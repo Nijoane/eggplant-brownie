@@ -10,8 +10,8 @@ import UIKit
 class Item: NSObject {
     
     /* MARK: - Attributes */
-    var name: String
-    var kcal: Double
+    let name: String
+    let kcal: Double
         
     /* MARK: - Constructor(Init) */
     init(name: String, kcal: Double) {
