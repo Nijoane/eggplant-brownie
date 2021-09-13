@@ -13,6 +13,7 @@
 		2407CD2126D809F0008ABD7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407CD1F26D809F0008ABD7D /* Main.storyboard */; };
 		2407CD2326D809F3008ABD7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2407CD2226D809F3008ABD7D /* Assets.xcassets */; };
 		2407CD2626D809F3008ABD7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2407CD2426D809F3008ABD7D /* LaunchScreen.storyboard */; };
+		245130A426E905590085A683 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245130A326E905590085A683 /* TableViewController.swift */; };
 		2486090926E02A10003325D1 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486090826E02A10003325D1 /* Dish.swift */; };
 		2486090B26E02A91003325D1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486090A26E02A91003325D1 /* Item.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		2407CD2226D809F3008ABD7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2407CD2526D809F3008ABD7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2407CD2726D809F3008ABD7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		245130A326E905590085A683 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2486090826E02A10003325D1 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		2486090A26E02A91003325D1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				2407CD1D26D809F0008ABD7D /* ViewController.swift */,
+				245130A326E905590085A683 /* TableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2486090B26E02A91003325D1 /* Item.swift in Sources */,
+				245130A426E905590085A683 /* TableViewController.swift in Sources */,
 				2407CD1E26D809F0008ABD7D /* ViewController.swift in Sources */,
 				2486090926E02A10003325D1 /* Dish.swift in Sources */,
 				2407CD1A26D809F0008ABD7D /* AppDelegate.swift in Sources */,
