@@ -12,19 +12,20 @@ class Dish: NSObject {
     /* MARK: - Attributes */
     let name: String
     let happiness: Int
-    let itens: Array<Item> = []
+    var items: Array<Item> = []
         
     /* MARK: - Constructor (init) */
-    init(name: String, happiness: Int) {
+    init(name: String, happiness: Int, items: [Item] = []) {
         self.name = name
         self.happiness = happiness
+        self.items = items
     }
         
     /* MARK: - Methods */
     func totalOfKcal() -> Double {
         var total: Double = 0
             
-        for item in itens {
+        for item in items {
             total += item.kcal
         }
         return total
