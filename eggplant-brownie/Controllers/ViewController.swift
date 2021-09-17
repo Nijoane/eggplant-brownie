@@ -13,11 +13,10 @@ protocol AddMealDelegate {
     func add(_ dish: Dish)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddItemsDelegate {
     // MARK: - Attributes -
     
     var delegate: AddMealDelegate?
-//    var items: [String] = ["Tomato Sauce", "Cheese", "Basil", "Ground Meat"]
     var items: [Item] = [
         Item(name: "Tomato Sauce", kcal: 40.00),
         Item(name: "Cheese", kcal: 40.00),
@@ -31,7 +30,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet var nameTextField: UITextField?
     @IBOutlet var happinesTextField: UITextField?
+    @IBOutlet weak var itemsTableView: UITableView!
     
+    // MARK: - View life-cycle -
+    
+    override func viewDidLoad() {
+        let btnAddItem = UIBarButtonItem(title: "Add new item", style: .plain, target: self, action: #selector(addItem))
+        navigationItem.rightBarButtonItem = btnAddItem
+    }
+    
+    @objc func addItem(){
+        let addItemsViewController = AddItemsViewController(delegate: self)
+        
+        navigationController?.pushViewController(addItemsViewController, animated: true)
+    }
     // MARK: - UITableViewDataSource -
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +59,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = item.name
          
         return cell
+    }
+    
+    func add(_ item: Item) {
+        items.append(item)
+        itemsTableView.reloadData()
     }
     
     // MARK: - UITableViewDelegate -
