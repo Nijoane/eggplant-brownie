@@ -13,11 +13,19 @@ protocol AddMealDelegate {
     func add(_ dish: Dish)
 }
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Attributes -
     
     var delegate: AddMealDelegate?
-    var items: [String] = ["Tomato Sauce", "Cheese", "Basil", "Ground Meat"]
+//    var items: [String] = ["Tomato Sauce", "Cheese", "Basil", "Ground Meat"]
+    var items: [Item] = [
+        Item(name: "Tomato Sauce", kcal: 40.00),
+        Item(name: "Cheese", kcal: 40.00),
+        Item(name: "Basil", kcal: 40.00),
+        Item(name: "Ground Meat", kcal: 40.00)
+    ]
+    
+    var selectedItems: [Item] = []
     
     // MARK: - IBOutelets -
     
@@ -36,9 +44,34 @@ class ViewController: UIViewController, UITableViewDataSource {
         let lineOfTable  = indexPath.row
         let item = items[lineOfTable]
         
-        cell.textLabel?.text = item
+        cell.textLabel?.text = item.name
          
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate -
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        
+        if cell.accessoryType == .none {
+            cell.accessoryType = .checkmark
+            
+            let lineOfTable = indexPath.row
+            selectedItems.append(items[lineOfTable])
+            
+        } else {
+            cell.accessoryType = .none
+            
+            let item = items[indexPath.row]
+            if let position = selectedItems.firstIndex(of: item) {
+                selectedItems.remove(at: position)
+                
+                for selectedItem in selectedItems {
+                    print(selectedItem.name)
+                }
+            }
+        }
     }
     
     // MARK: - IBActions -
@@ -54,7 +87,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             return
         }
         
-        let dish = Dish(name: nameOfDish, happiness: happiness)
+        let dish = Dish(name: nameOfDish, happiness: happiness , items: selectedItems)
         
         print("I ate \(dish.name) and my happiness was: \(dish.happiness)")
                 
