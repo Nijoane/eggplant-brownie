@@ -14,7 +14,8 @@ class Dish: NSObject {
     let happiness: Int
     var items: Array<Item> = []
         
-    /* MARK: - Constructor (init) */
+    //MARK: - Constructor (init) -
+    
     init(name: String, happiness: Int, items: [Item] = []) {
         self.name = name
         self.happiness = happiness
@@ -29,5 +30,14 @@ class Dish: NSObject {
             total += item.kcal
         }
         return total
+    }
+    
+    func details() -> String {
+        var message = "Happiness was \(happiness)!  Ingredients:"
+        for item in items {
+            message += " \(item.name),"
+        }
+        
+        return message
     }
 }

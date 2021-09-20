@@ -25,12 +25,29 @@ class TableViewController: UITableViewController, AddMealDelegate{
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = dishes.name
         
+        let logPress = UILongPressGestureRecognizer(target: self, action: #selector(showDetails(_:)))
+        cell.addGestureRecognizer(logPress)
+        
         return cell
     }  
     
     func add(_ dish: Dish) {
         dishesList.append(dish)
         tableView.reloadData()
+    }
+    
+    @objc func showDetails(_ gesture: UILongPressGestureRecognizer){
+        if gesture.state == .began {
+            let cell = gesture.view as! UITableViewCell
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            let meal = dishesList[indexPath.row]
+            
+            let alert = UIAlertController(title: meal.name, message: meal.details(), preferredStyle: .alert)
+            let btnCancel = UIAlertAction(title: "Back to the list", style: .cancel, handler: nil)
+            
+            alert.addAction(btnCancel)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
