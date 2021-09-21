@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet var nameTextField: UITextField?
     @IBOutlet var happinesTextField: UITextField?
-    @IBOutlet weak var itemsTableView: UITableView!
+    @IBOutlet weak var itemsTableView: UITableView?
     
     // MARK: - View life-cycle -
     
@@ -63,7 +63,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         items.append(item)
-        itemsTableView.reloadData()
+        itemsTableView?.reloadData()
+        if let tablewView = itemsTableView {
+            tablewView.reloadData()
+            
+        } else {
+            let alert = UIAlertController(title: "Sorry", message: "the table could not be updated", preferredStyle: .alert)
+            let btnBack = UIAlertAction(title: "Go back", style: .cancel, handler: nil)
+            
+            alert.addAction(btnBack)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - UITableViewDelegate -
