@@ -47,7 +47,7 @@ class Dish: NSObject, NSCoding {
     }
     
     func details() -> String {
-        var message = "Happiness was \(happiness)!  Ingredients:"
+        var message = "Happiness was \(happiness)! Ingredients:"
         for item in items {
             message += " \(item.name),"
         }
