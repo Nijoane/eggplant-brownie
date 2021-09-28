@@ -68,11 +68,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             tablewView.reloadData()
             
         } else {
-            let alert = UIAlertController(title: "Sorry", message: "the table could not be updated", preferredStyle: .alert)
-            let btnBack = UIAlertAction(title: "Go back", style: .cancel, handler: nil)
-            
-            alert.addAction(btnBack)
-            present(alert, animated: true, completion: nil)
+            Alert(controller: self).show(message: "the table cannot be updated")
         }
     }
     
@@ -101,25 +97,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    // MARK: - IBActions -
-    
-    @IBAction func add(_ sender: Any) {
-        
-        guard let nameOfDish = nameTextField?.text else {
-            return
-        }
+    func dishRecovery() -> Dish? {
+        guard let nameOfDish = nameTextField?.text else { return nil }
            
-        guard let happinessOfDish = happinesTextField?.text, let
-            happiness = Int(happinessOfDish) else {
-            return
-        }
+        guard let happinessOfDish = happinesTextField?.text,
+                let happiness = Int(happinessOfDish) else { return nil }
         
         let dish = Dish(name: nameOfDish, happiness: happiness , items: selectedItems)
         
-        print("I ate \(dish.name) and my happiness was: \(dish.happiness)")
-                
-        delegate?.add(dish)
-        navigationController?.popViewController(animated: true)
+        return dish
+    }
+    
+    
+    // MARK: - IBActions -
+    
+    @IBAction func add(_ sender: Any) {
+        if let dish = dishRecovery() {
+            delegate?.add(dish)
+            navigationController?.popViewController(animated: true)
+        
+        } else {
+            Alert(controller: self).show(message: "Error reading form data")
+        }
     }
 }
 

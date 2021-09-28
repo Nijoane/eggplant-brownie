@@ -7,9 +7,10 @@
 
 import UIKit
 
-class Dish: NSObject {
+class Dish: NSObject, NSCoding {
     
-    /* MARK: - Attributes */
+    /* MARK: - Attributes - */
+    
     let name: String
     let happiness: Int
     var items: Array<Item> = []
@@ -21,8 +22,21 @@ class Dish: NSObject {
         self.happiness = happiness
         self.items = items
     }
-        
-    /* MARK: - Methods */
+    /* MARK: - NSCoding - */
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(happiness, forKey: "happiness")
+        aCoder.encode(items, forKey: "items")
+    }
+    required init?(coder aDecoder: NSCoder){
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        happiness = aDecoder.decodeInteger(forKey: "happiness")
+        items = aDecoder.decodeObject(forKey: "items") as! Array<Item>
+    }
+    
+    /* MARK: - Methods - */
+    
     func totalOfKcal() -> Double {
         var total: Double = 0
             

@@ -33,6 +33,21 @@ class TableViewController: UITableViewController, AddMealDelegate{
     
     func add(_ dish: Dish) {
         dishesList.append(dish)
+        guard let directory = FileManager.default.urls(
+            for: .documentDirectory,
+            in: .userDomainMask).first else { return }
+        
+        let path = directory.appendingPathComponent("meal")
+        do {
+            let data = try NSKeyedArchiver.archivedData(
+                withRootObject: dishesList,
+                requiringSecureCoding: false)
+            
+            try data.write(to: path)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         tableView.reloadData()
     }
     
@@ -42,11 +57,11 @@ class TableViewController: UITableViewController, AddMealDelegate{
             guard let indexPath = tableView.indexPath(for: cell) else { return }
             let meal = dishesList[indexPath.row]
             
-            let alert = UIAlertController(title: meal.name, message: meal.details(), preferredStyle: .alert)
-            let btnCancel = UIAlertAction(title: "Back to the list", style: .cancel, handler: nil)
-            
-            alert.addAction(btnCancel)
-            present(alert, animated: true, completion: nil)
+            RemoveMealViewController(controller: self).show(meal, handler: {
+                alert in
+                self.dishesList.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            })
         }
     }
     
