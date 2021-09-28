@@ -90,7 +90,7 @@
                     <navigationItem key="navigationItem" id="BdN-Hg-Zj2"/>
                     <connections>
                         <outlet property="happinesTextField" destination="yPe-xX-y7s" id="l6I-BU-Yed"/>
-                        <outlet property="itemsTableView" destination="NCi-QF-gN1" id="SrA-bp-wai"/>
+                        <outlet property="itemsTableView" destination="NCi-QF-gN1" id="5qq-gL-R5j"/>
                         <outlet property="nameTextField" destination="Ylv-UD-HWu" id="H5T-bK-0hR"/>
                     </connections>
                 </viewController>
