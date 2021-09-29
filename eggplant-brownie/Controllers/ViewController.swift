@@ -17,13 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK: - Attributes -
     
     var delegate: AddMealDelegate?
-    var items: [Item] = [
-        Item(name: "Tomato Sauce", kcal: 40.00),
-        Item(name: "Cheese", kcal: 40.00),
-        Item(name: "Basil", kcal: 40.00),
-        Item(name: "Ground Meat", kcal: 40.00)
-    ]
-    
+    var items: [Item] = []
     var selectedItems: [Item] = []
     
     // MARK: - IBOutelets -
@@ -37,13 +31,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         let btnAddItem = UIBarButtonItem(title: "Add new item", style: .plain, target: self, action: #selector(addItem))
         navigationItem.rightBarButtonItem = btnAddItem
+        
+        recoverItems()
     }
     
+    func recoverItems() {
+        items = ItemDao().recovery()
+    }
     @objc func addItem(){
         let addItemsViewController = AddItemsViewController(delegate: self)
         
         navigationController?.pushViewController(addItemsViewController, animated: true)
     }
+    
+    func add(_ item: Item) {
+        items.append(item)
+        itemsTableView?.reloadData()
+        
+        ItemDao().save(items)
+        
+        if let tablewView = itemsTableView {
+            tablewView.reloadData()
+        } else {
+            Alert(controller: self).show(message: "the table cannot be updated")
+        }
+    }
+    
     // MARK: - UITableViewDataSource -
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,17 +72,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = item.name
          
         return cell
-    }
-    
-    func add(_ item: Item) {
-        items.append(item)
-        itemsTableView?.reloadData()
-        if let tablewView = itemsTableView {
-            tablewView.reloadData()
-            
-        } else {
-            Alert(controller: self).show(message: "the table cannot be updated")
-        }
     }
     
     // MARK: - UITableViewDelegate -

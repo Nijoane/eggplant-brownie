@@ -20,6 +20,8 @@
 		247BABF12703BDD300319E11 /* RemoveMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247BABF02703BDD300319E11 /* RemoveMealViewController.swift */; };
 		2486090926E02A10003325D1 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486090826E02A10003325D1 /* Dish.swift */; };
 		2486090B26E02A91003325D1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486090A26E02A91003325D1 /* Item.swift */; };
+		24CEEE3C2704EC1500577A41 /* MealDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEEE3B2704EC1500577A41 /* MealDao.swift */; };
+		24CEEE3E2705022900577A41 /* ItemDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CEEE3D2705022900577A41 /* ItemDao.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		247BABF02703BDD300319E11 /* RemoveMealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMealViewController.swift; sourceTree = "<group>"; };
 		2486090826E02A10003325D1 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		2486090A26E02A91003325D1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		24CEEE3B2704EC1500577A41 /* MealDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDao.swift; sourceTree = "<group>"; };
+		24CEEE3D2705022900577A41 /* ItemDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDao.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				2486090826E02A10003325D1 /* Dish.swift */,
 				2486090A26E02A91003325D1 /* Item.swift */,
 				242CE11F26FE345300C313BA /* Alert.swift */,
+				24CEEE3B2704EC1500577A41 /* MealDao.swift */,
+				24CEEE3D2705022900577A41 /* ItemDao.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,8 +190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2486090B26E02A91003325D1 /* Item.swift in Sources */,
+				24CEEE3C2704EC1500577A41 /* MealDao.swift in Sources */,
 				245130A426E905590085A683 /* TableViewController.swift in Sources */,
 				2448B50626F51FA400568A41 /* AddItemsViewController.swift in Sources */,
+				24CEEE3E2705022900577A41 /* ItemDao.swift in Sources */,
 				2407CD1E26D809F0008ABD7D /* ViewController.swift in Sources */,
 				2486090926E02A10003325D1 /* Dish.swift in Sources */,
 				247BABF12703BDD300319E11 /* RemoveMealViewController.swift in Sources */,

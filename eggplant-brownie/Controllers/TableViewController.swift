@@ -8,20 +8,19 @@
 import UIKit
 
 class TableViewController: UITableViewController, AddMealDelegate{
-    var dishesList = [
-        Dish(name: "Ice Cream", happiness: 4),
-        Dish(name: "Pizza", happiness: 4),
-        Dish(name: "Pasta", happiness: 5),
-        Dish(name: "Rice", happiness: 3)
-    ]
+    var dishesList: [Dish] = []
+    
+    override func viewDidLoad() {
+        dishesList = MealDao().recovery()
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dishesList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let dishes = dishesList[indexPath.row]
+        
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = dishes.name
         
@@ -33,22 +32,9 @@ class TableViewController: UITableViewController, AddMealDelegate{
     
     func add(_ dish: Dish) {
         dishesList.append(dish)
-        guard let directory = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask).first else { return }
-        
-        let path = directory.appendingPathComponent("meal")
-        do {
-            let data = try NSKeyedArchiver.archivedData(
-                withRootObject: dishesList,
-                requiringSecureCoding: false)
-            
-            try data.write(to: path)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
         tableView.reloadData()
+        
+        MealDao().save(dishesList)
     }
     
     @objc func showDetails(_ gesture: UILongPressGestureRecognizer){
